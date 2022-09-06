@@ -1,0 +1,34 @@
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+
+    width: calc(100% - 5px);
+    height: 100%;
+
+    margin: 0;
+    padding: 0 2px;
+
+    outline: 1px solid rgba(134,144,160,0.4);;
+    border-radius: 100vw;
+}
+
+.slider:focus {
+    outline: 2px solid #2276fc;
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none;
+
+    width: 20px;
+    height: 20px;
+
+    background: #2276fc;
+    border-radius: 100%;
+
+    opacity: .7;
+    transition: opacity .05s;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    opacity: 1;
+}

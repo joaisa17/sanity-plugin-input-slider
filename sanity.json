@@ -1,0 +1,8 @@
+{
+  "parts": [
+    {
+      "implements": "part:@sanity/form-builder/input-resolver",
+      "path": "./lib/index.js"
+    }
+  ]
+}
