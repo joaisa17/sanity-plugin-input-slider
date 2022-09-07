@@ -3,7 +3,7 @@
     appearance: none;
 
     width: calc(100% - 5px);
-    height: 100%;
+    height: 24px;
 
     margin: 0;
     padding: 0 2px;
@@ -31,4 +31,34 @@
 
 .slider::-webkit-slider-thumb:hover {
     opacity: 1;
+}
+
+.labels {
+    width: calc(100% - 24.5px);
+    margin: 0 auto;
+    margin-bottom: 6%;
+    position: absolute;
+    left: calc(24.5px / 2);
+}
+
+.label {
+    width: 1px;
+    height: 8px;
+    background-color: black;
+    position: absolute;
+    overflow: visible;
+    transform: translateX(-.25px);
+}
+
+.label-title {
+    color: #66758d;
+    font-size: small;
+    margin-top: 8px;
+    text-align: center;
+    width: fit-content;
+    transform: translateX(-50%);
+}
+
+.center {
+    transform: translateX(-.5px);
 }

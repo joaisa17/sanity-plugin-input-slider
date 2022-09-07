@@ -7,13 +7,13 @@ In your sanity project's root folder, run the following command:
 sanity install input-slider
 ```
 
-In your document/object field, use the following example as a reference:
+Use the following example schema as a reference:
 ```js
 export default {
     name: 'example',
     type: 'object',
 
-    title: 'Example object',
+    title: 'Example number slider',
 
     fields: [
         {
@@ -32,4 +32,36 @@ export default {
 }
 ```
 
-In the future, support for predefined steps may be added.
+## Labels
+If you wish to use labels for your slider, 
+add the `labels` property to the options:
+```js
+export default {
+    name: 'example',
+    type: 'object',
+
+    title: 'Example number slider',
+
+    fields: [
+        {
+            name: 'rating',
+            type: 'number',
+
+            options: {
+                range: {
+                    min: 0, // Minimum value
+                    max: 10, // Maximum value
+                    step: 1 // Slider interval
+                },
+
+                labels: [
+                    { value: 0, title: 'Very bad' },
+                    { value: 3, title: 'Bad' },
+                    { value: 5, title: 'Ok' },
+                    { value: 7, title: 'Good' },
+                    { value: 0, title: 'Very good' }
+                ]
+            }
+        }
+    ]
+}

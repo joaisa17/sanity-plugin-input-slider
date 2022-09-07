@@ -41,6 +41,50 @@ export default createSchema({
               step: 2.5
             }
           }
+        },
+        {
+          name: 'number2',
+          type: 'number',
+
+          title: 'Number 2',
+          description: 'Test input 2',
+
+          options: {
+            range: {
+              min: 40,
+              max: 200,
+              step: 10
+            }
+          }
+        },
+        {
+          name: 'rating',
+          type: 'number',
+
+          title: 'Rating',
+          description: 'On a scale of 1-10, how useful is this feature?',
+
+          options: {
+            range: {
+              min: 0,
+              max: 20,
+              step: 1
+            },
+
+            labels: [
+              { value: 0, title: 'More useless' },
+              { value: 3, title: 'Very useless' },
+              { value: 5, title: 'Normalized' },
+              { value: 6, title: 'Test' },
+              { value: 10, title: 'Very useful' }
+            ]
+          }
+        },
+        {
+          name: 'last',
+          type: 'string',
+
+          title: 'Last'
         }
       ]
     }
