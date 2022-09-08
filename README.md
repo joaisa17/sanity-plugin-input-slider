@@ -51,14 +51,14 @@ export default {
                 range: {
                     min: 0, // Minimum value
                     max: 10, // Maximum value
-                    step: 1 // Slider interval
+                    step: 0.5 // Slider interval
                 },
 
                 labels: [
                     { value: 0, title: 'Very bad' },
-                    { value: 3, title: 'Bad' },
+                    { value: 2.5, title: 'Bad' },
                     { value: 5, title: 'Ok' },
-                    { value: 7, title: 'Good' },
+                    { value: 7.5, title: 'Good' },
                     { value: 0, title: 'Very good' }
                 ]
             }
