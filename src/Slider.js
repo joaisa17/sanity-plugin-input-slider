@@ -90,16 +90,17 @@ const Slider = props => {
                 className={styles.slider}
                 style={type.options.style}
                 type="range"
-                min={min ?? 0}
-                max={max ?? 100}
-                step={step ?? 1}
+                min={min}
+                max={max}
+                step={step}
                 value={v}
                 onChange={handleChange}
             />
 
             {type.options.labels?.length && <div className={styles.labels}>
                 {type.options.labels.map((label, i) => {
-                    const percentFromCenter = ((max / 2 - (max - label.value)) / (max || 1)) * 100;
+                    const range = max-min;
+                    const percentFromCenter = ((range / 2 - (range - label.value)) / (range || 1)) * 100;
 
                     return <div
                         className={combine(styles.label, percentFromCenter === 0 && styles.center)}
