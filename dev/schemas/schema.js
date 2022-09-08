@@ -23,12 +23,14 @@ export default createSchema({
           name: 'title',
           type: 'string',
 
+          readonly: true,
+
           title: 'Title',
           description: 'Placeholder',
           initialValue: 'Test'
         },
         {
-          name: 'number',
+          name: 'withoutLabels',
           type: 'number',
 
           title: 'Number',
@@ -43,46 +45,38 @@ export default createSchema({
           }
         },
         {
-          name: 'number2',
+          name: 'noSlider',
           type: 'number',
 
-          title: 'Number 2',
-          description: 'Test input 2',
-
-          options: {
-            range: {
-              min: 40,
-              max: 200,
-              step: 10
-            }
-          }
+          title: 'Not a slider'
         },
         {
-          name: 'rating',
+          name: 'score',
           type: 'number',
 
-          title: 'Rating',
+          title: 'Score',
           description: 'On a scale of 1-10, how useful is this feature?',
 
           options: {
             range: {
               min: 0,
-              max: 20,
-              step: 1
+              max: 10,
+              step: 0.5
             },
 
-            labels: [
-              { value: 0, title: 'More useless' },
-              { value: 3, title: 'Very useless' },
-              { value: 5, title: 'Normalized' },
-              { value: 6, title: 'Test' },
-              { value: 10, title: 'Very useful' }
-            ]
+            labels: ['More useless', 'Very useless', 'Ok', 'Useful', 'Very useful']
+            .map((l, i, a) => ({
+              title: l,
+              value: (10 / (a.length - 1)) * i
+            }))
           }
         },
         {
           name: 'last',
           type: 'string',
+
+          readonly: true,
+          initialValue: 'End of document',
 
           title: 'Last'
         }

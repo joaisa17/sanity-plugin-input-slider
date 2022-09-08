@@ -1,6 +1,6 @@
 {
   "name": "sanity-plugin-input-slider",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Slider input for Sanity-io",
   "main": "dist/index.js",
   "scripts": {

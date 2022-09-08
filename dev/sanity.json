@@ -1,5 +1,9 @@
 {
   "root": true,
+  "server": {
+    "hostname": "localhost",
+    "port": 3334
+  },
   "project": {
     "name": "input-slider-development"
   },

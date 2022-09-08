@@ -34,7 +34,9 @@ function combine(...classes) {
  *     level: number;
  *     value?: number;
  *     onChange(value: number): void;
+ *     parent: { _type: string };
  *     type: {
+ *         name: string;
  *         title?: string;
  *         description?: string;
  *         initialValue?: number;
@@ -50,11 +52,12 @@ function combine(...classes) {
  *     };
  * }>}
  */
-const Slider = props => {
-    const { type, value, level } = props;
+const Slider = (props, ref) => {
+    const { type, value, level, parent } = props;
     const { min, max, step } = type.options.range;
 
     const [maxHeight, setMaxHeight] = useState(0);
+    const [mounted, setMounted] = useState(false);
     
     let v = clamp(
         Number(value ?? type.initialValue ?? min),
@@ -65,6 +68,12 @@ const Slider = props => {
     const title = `${type.title}: ${v}`;
 
     useEffect(() => {
+        if ([min, max, step].filter(p => typeof p !== 'number').length) throw new Error(`${parent._type}: missing parameters`);
+        if (min >= max) throw new Error(`${parent._type}: min cannot be greater or equal to max`);
+        if (step <= 0) throw new Error(`${parent._type}: step must be greater than 0`);
+        
+        setMounted(true);
+
         if (value && (value < min || value > max)) {
             props.onChange(PatchEvent.from(
                 set(clamp(type.initialValue ?? min, min, max))
@@ -80,7 +89,7 @@ const Slider = props => {
         ));
     }
 
-    return <div style={{ marginBottom: `${maxHeight}px` }}>
+    return <div ref={ref} style={{ marginBottom: `${maxHeight}px` }}>
         <FormField
             label={title}
             level={level}
@@ -94,13 +103,19 @@ const Slider = props => {
                 max={max}
                 step={step}
                 value={v}
+                label=""
                 onChange={handleChange}
             />
 
             {type.options.labels?.length && <div className={styles.labels}>
                 {type.options.labels.map((label, i) => {
                     const range = max-min;
-                    const percentFromCenter = ((range / 2 - (range - label.value)) / (range || 1)) * 100;
+                    const percentFromCenter = ((range / 2 - (max - label.value)) / (range || 1)) * 100;
+
+                    if (!mounted && (percentFromCenter > 50 || percentFromCenter < -50)) {
+                        console.warn(`${parent._type}: Label ${label.title} has a value outside of the slider range: ${label.value}`);
+                        return null;
+                    }
 
                     return <div
                         className={combine(styles.label, percentFromCenter === 0 && styles.center)}
